@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'option'
-
 RSpec.describe Ecwid::Option do
   describe 'new' do
     it 'should raise an error when setting an invalid type' do

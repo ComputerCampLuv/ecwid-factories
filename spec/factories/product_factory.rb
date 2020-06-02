@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'product'
-
 FactoryBot.define do
   factory :ecwid_product, class: Ecwid::Product do
     name      { "Ecwid Item - #{SecureRandom.hex(2)}" }

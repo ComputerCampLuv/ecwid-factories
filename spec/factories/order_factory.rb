@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'order'
-
 FactoryBot.define do
   factory :ecwid_order, class: Ecwid::Order do
     line_items     { build_list(:ecwid_line_item, 1) }

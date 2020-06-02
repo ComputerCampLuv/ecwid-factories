@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'tax'
-
 FactoryBot.define do
   factory :ecwid_tax, class: Ecwid::Tax do
     name  { 'VAT' }

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'choice'
-
 RSpec.describe Ecwid::Choice do
   let(:choice) { build :ecwid_choice, text: text, value: value, type: type }
   let(:text)   { "Sofie's" }

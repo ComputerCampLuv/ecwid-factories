@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'tax'
-
 RSpec.describe Ecwid::Tax do
   let(:tax) { build :ecwid_tax, value: 8.75 }
 

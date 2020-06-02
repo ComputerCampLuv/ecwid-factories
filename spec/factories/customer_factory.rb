@@ -2,8 +2,6 @@
 
 require 'faker'
 
-require 'customer'
-
 FactoryBot.define do
   factory :ecwid_customer, class: Ecwid::Customer do
     email         { Faker::Internet.email }

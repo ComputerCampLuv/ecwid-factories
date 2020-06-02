@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'option'
-
 FactoryBot.define do
   factory :ecwid_option, class: Ecwid::Option do
     sequence(:name) { |n| "Option #{n}" }

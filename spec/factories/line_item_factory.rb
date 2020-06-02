@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'line_item'
-
 FactoryBot.define do
   factory :ecwid_line_item, class: Ecwid::LineItem do
     product         { create(:ecwid_product) }

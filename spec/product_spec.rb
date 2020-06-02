@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'product'
-
 RSpec.describe Ecwid::Product do
   describe '#params' do
     context 'when product has no options' do

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'line_item'
-
 RSpec.describe Ecwid::LineItem do
   # let(:line_item) { build :ecwid_line_item, product: product }
   # let(:product)   { build :ecwid_product, price: 10 }
@@ -60,8 +58,8 @@ RSpec.describe Ecwid::LineItem do
       let(:product)   { build :ecwid_product, price: 10 }
       let(:tax)       { build :ecwid_tax, value: 15 }
 
-      it 'should return the correct total that includes tax' do
-        expect(line_item.total).to eq(11.5)
+      it 'should return the correct total' do
+        expect(line_item.total).to eq(10)
       end
     end
   end

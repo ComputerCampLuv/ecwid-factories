@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'bulk_discount'
-
 RSpec.describe Ecwid::BulkDiscount do
   let(:discount) { build :ecwid_bulk_discount, quantity: 2, price: 8 }
 

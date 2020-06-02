@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'customer'
-
 RSpec.describe Ecwid::Customer do
   let(:first_name) { Faker::Name.first_name }
   let(:last_name)  { Faker::Name.last_name }
