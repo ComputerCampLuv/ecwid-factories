@@ -13,7 +13,7 @@ RSpec.describe Ecwid::Tax do
     let(:product) { build :ecwid_product, price: 10 }
 
     it 'should return a hash with the calculated tax data' do
-      expect(tax.calculate_for(product, 1)).to eq(
+      expect(tax.calculate_for(product.price)).to eq(
         includeInPrice: false,
         name: tax.name,
         taxOnDiscountedSubtotal: 0.88,

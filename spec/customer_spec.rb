@@ -15,17 +15,7 @@ RSpec.describe Ecwid::Customer do
     end
   end
 
-  describe '#partial' do
-    it 'should include only the name fields' do
-      expect(customer.partial).to eq(
-        name: customer.name,
-        firstName: first_name,
-        lastName: last_name
-      )
-    end
-  end
-
-  describe '#full' do
+  describe '#to_h' do
     it 'should include all fields' do
       expect(customer.full).to include(
         :street, :city, :countryCode, :countryName,

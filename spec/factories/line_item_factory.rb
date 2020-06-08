@@ -2,13 +2,16 @@
 
 FactoryBot.define do
   factory :ecwid_line_item, class: Ecwid::LineItem do
-    product         { create(:ecwid_product) }
-    quantity        { 1 }
-    taxes           { [] }
-    discounts       { [] }
+    product    { build :ecwid_product }
+    quantity   { 1 }
+    selections { [] }
+    taxes      { [] }
 
-    trait :tax_applied do
-      taxes { build_list(:ecwid_tax, 1) }
+    initialize_with do
+      new product: product,
+          quantity: quantity,
+          selections: selections,
+          taxes: taxes
     end
   end
 end

@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :ecwid_auto_discount, class: Ecwid::AutomaticDiscount do
-    # :percent | :amount
-    type  { :amount }
+    # :percent | :absolute
+    type  { :absolute }
     value { 2 }
   end
 end

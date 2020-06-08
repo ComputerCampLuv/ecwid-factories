@@ -9,12 +9,13 @@ module Ecwid
       value / 100.0
     end
 
-    def calculate_for(product, quantity)
+    def calculate_for(amount)
+      amount *= decimal_rate
       {
         name: name,
         value: value,
-        total: (quantity * product.price * decimal_rate).round(2),
-        taxOnDiscountedSubtotal: (quantity * product.price * decimal_rate).round(2),
+        total: amount.round(2),
+        taxOnDiscountedSubtotal: amount.round(2),
         taxOnShipping: 0,
         includeInPrice: false
       }

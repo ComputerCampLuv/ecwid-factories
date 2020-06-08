@@ -8,7 +8,7 @@ module Ecwid
     attr_accessor :text, :value
     attr_reader :type
 
-    def initialize(text = '', value = 0, type = 'ABSOLUTE')
+    def initialize(text, value = 0, type = 'ABSOLUTE')
       self.type = type
 
       @text  = text
@@ -26,6 +26,14 @@ module Ecwid
         text: text,
         priceModifier: value,
         priceModifierType: type
+      }
+    end
+
+    def as_selection
+      {
+        selectionTitle: text,
+        selectionModifier: value,
+        selectionModifierType: type
       }
     end
   end

@@ -30,5 +30,20 @@ module Ecwid
         stateOrProvinceName: province_name
       )
     end
+
+    def to_h
+      {
+        name: name,
+        firstName: first_name,
+        lastName: last_name,
+        street: street,
+        city: city,
+        countryCode: country_code,
+        countryName: country_name,
+        postalCode: postal_code,
+        stateOrProvinceCode: province_code,
+        stateOrProvinceName: province_name
+      }.reject { |_k, v| v.nil? }
+    end
   end
 end

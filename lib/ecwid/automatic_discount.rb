@@ -6,7 +6,7 @@ module Ecwid
     attr_reader :type
     attr_accessor :value
 
-    DISCOUNT_TYPES = %i[percent amount].freeze
+    DISCOUNT_TYPES = %i[percent absolute].freeze
 
     def type=(discount_type)
       raise TypeError unless DISCOUNT_TYPES.include?(discount_type)
