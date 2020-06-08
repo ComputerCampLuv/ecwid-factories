@@ -240,7 +240,7 @@ RSpec.describe Ecwid::LineItem do
       it 'should return an array with a single set of tax params' do
         tax_params = tax.calculate_for(product.price)
 
-        expect(line_item.tax_params).to eq([tax_params])
+        expect(line_item.taxes.map(&:to_h)).to eq([tax_params])
       end
     end
 
@@ -251,7 +251,7 @@ RSpec.describe Ecwid::LineItem do
       it 'should return an array of multiple tax params' do
         taxes_params = taxes.map { |tax| tax.calculate_for(product.price) }
 
-        expect(line_item.tax_params).to eq(taxes_params)
+        expect(line_item.taxes.map(&:to_h)).to eq(taxes_params)
       end
     end
   end

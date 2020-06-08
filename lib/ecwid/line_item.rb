@@ -3,6 +3,8 @@
 module Ecwid
   # Ecwid::LineItem
   class Ecwid::LineItem
+    attr_accessor :shipping
+
     attr_writer :coupon_amount, :discounts
 
     attr_reader :product,
@@ -19,7 +21,6 @@ module Ecwid
                 :short_description,
                 :short_description_translated,
                 :tax,
-                :shipping,
                 :quantity_in_stock,
                 :name,
                 :name_translated,
@@ -41,6 +42,8 @@ module Ecwid
       @quantity   = quantity
       @selections = selections
       @taxes      = taxes
+
+      calculate_taxes
     end
 
     def subtotal
@@ -56,13 +59,14 @@ module Ecwid
     end
 
     def tax_total
+      (taxes || []).map(&:total).sum
       # (taxes || []).map { |t| (taxable_total * t.decimal_rate).round(2) }.sum
-      tax_params.reduce(0) { |sum, tax| sum + tax[:total] }.round(2)
+      # tax_params.reduce(0) { |sum, tax| sum + tax[:total] }.round(2)
     end
 
-    def tax_params
-      taxes.map { |tax| tax.calculate_for(taxable_total) }
-    end
+    # def tax_params
+    #   taxes.map { |tax| tax.calculate_for(taxable_total) }
+    # end
 
     def add_options(price)
       return price unless selections&.any?
@@ -118,6 +122,16 @@ module Ecwid
       @discounts || []
     end
 
+    def calculate_taxes
+      taxes.each do |tax|
+        tax.tax_on_discounted_subtotal = taxable_total * tax.decimal_rate
+
+        next unless tax.include_shipping
+
+        tax.tax_on_shipping = (shipping || 0) * tax.decimal_rate
+      end
+    end
+
     def to_h
       {
         productId: product.id,
@@ -130,7 +144,7 @@ module Ecwid
         taxable: product.tax.fetch(:taxable),
         quantity: quantity,
         tax: tax_total,
-        taxes: tax_params,
+        taxes: taxes.map(&:to_h),
         selectedOptions: selected_options,
         couponApplied: coupon_applied,
         couponAmount: coupon_amount,

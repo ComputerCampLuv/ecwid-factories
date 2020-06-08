@@ -105,4 +105,36 @@ RSpec.describe Ecwid::Order do
       )
     end
   end
+
+  describe 'bulk, coupon, and voulume discount, with mutliple taxes' do
+    let(:order)     { build :ecwid_order, items: [line_item], automatic_discount: automatic, shipping_option: shipping }
+    let(:line_item) { build :ecwid_line_item, product: product, quantity: 2, taxes: [tax1, tax2] }
+    let(:tax1)      { build :ecwid_tax, value: 8.75, include_shipping: true }
+    let(:tax2)      { build :ecwid_tax, value: 1.5, include_shipping: true  }
+    let(:product)   { build :ecwid_product, price: 10, bulk_discounts: [bulk] }
+    let(:bulk)      { build :ecwid_bulk_discount, quantity: 2, price: 8 }
+    let(:automatic) { build :ecwid_auto_discount, type: :percent, value: 10 }
+    let(:shipping)  { build :ecwid_shipping, rate: 10 }
+
+    it "shouldn't shit the bed", :aggregate_failures do
+      expect(order.total).to eq(26.91)
+      expect(order.subtotal).to eq(16)
+      expect(order.tax).to eq(2.51)
+      expect(order.volume_discount).to eq(1.6)
+      expect(order.taxes_on_shipping).to match_array(
+        [
+          {
+            name: tax1.name,
+            value: 8.75,
+            total: 0.88
+          },
+          {
+            name: tax2.name,
+            value: 1.5,
+            total: 0.15
+          }
+        ]
+      )
+    end
+  end
 end

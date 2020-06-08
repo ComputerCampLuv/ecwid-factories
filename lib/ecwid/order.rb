@@ -5,201 +5,6 @@ require 'active_support/core_ext/string'
 require 'rest-client'
 require 'json'
 
-# {
-#   "vendorOrderNumber": "270",
-#   "refundedAmount": 0,
-#   "subtotal": 21.4,
-#   "total": 23.27,
-#   "giftCardRedemption": 0,
-#   "totalBeforeGiftCardRedemption": 23.27,
-#   "email": "msangster@shopkeep.com",
-#   "paymentMethod": "Pay by cash",
-#   "tax": 1.87,
-#   "customerTaxExempt": false,
-#   "customerTaxId": "",
-#   "customerTaxIdValid": false,
-#   "reversedTaxApplied": false,
-#   "ipAddress": "81.155.73.251",
-#   "couponDiscount": 0,
-#   "paymentStatus": "AWAITING_PAYMENT",
-#   "fulfillmentStatus": "AWAITING_PROCESSING",
-#   "orderNumber": 270,
-#   "refererUrl": "https://store29229076.shopsettings.com/",
-#   "orderComments": "",
-#   "volumeDiscount": 0,
-#   "customerId": 71297887,
-#   "membershipBasedDiscount": 0,
-#   "totalAndMembershipBasedDiscount": 0,
-#   "discount": 0,
-#   "usdTotal": 23.27,
-#   "globalReferer": "https://app.ecwid.com/api/v3/29229076/products?token=secret_cNhdYsQXz7JAbwBZF9sV9tEvckyVLbAr&enabled=false&limit=1",
-#   "createDate": "2020-06-05 20:48:32 +0000",
-#   "updateDate": "2020-06-05 20:48:32 +0000",
-#   "createTimestamp": 1591390112,
-#   "updateTimestamp": 1591390112,
-#   "items": [
-#       {
-#           "id": 334934802,
-#           "productId": 206653686,
-#           "categoryId": 0,
-#           "price": 10.7,
-#           "productPrice": 10,
-#           "sku": "00050",
-#           "quantity": 2,
-#           "shortDescription": "",
-#           "shortDescriptionTranslated": {
-#               "en": ""
-#           },
-#           "tax": 1.87,
-#           "shipping": 0,
-#           "quantityInStock": 0,
-#           "name": "The Dark Side",
-#           "nameTranslated": {
-#               "en": "The Dark Side"
-#           },
-#           "isShippingRequired": true,
-#           "weight": 0,
-#           "trackQuantity": false,
-#           "fixedShippingRateOnly": false,
-#           "fixedShippingRate": 0,
-#           "digital": false,
-#           "productAvailable": true,
-#           "couponApplied": false,
-#           "selectedOptions": [
-#               {
-#                   "name": "Drop Down List",
-#                   "nameTranslated": {
-#                       "en": "Drop Down List"
-#                   },
-#                   "value": "Option Value 2",
-#                   "valueTranslated": {
-#                       "en": "Option Value 2"
-#                   },
-#                   "valuesArray": [
-#                       "Option Value 2"
-#                   ],
-#                   "selections": [
-#                       {
-#                           "selectionTitle": "Option Value 2",
-#                           "selectionModifier": 13,
-#                           "selectionModifierType": "PERCENT"
-#                       }
-#                   ],
-#                   "type": "CHOICE"
-#               },
-#               {
-#                   "name": "Checkboxes",
-#                   "nameTranslated": {
-#                       "en": "Checkboxes"
-#                   },
-#                   "value": "Option Value 1, Option Value 2",
-#                   "valuesArray": [
-#                       "Option Value 1",
-#                       "Option Value 2"
-#                   ],
-#                   "selections": [
-#                       {
-#                           "selectionTitle": "Option Value 1",
-#                           "selectionModifier": -5.5,
-#                           "selectionModifierType": "PERCENT"
-#                       },
-#                       {
-#                           "selectionTitle": "Option Value 2",
-#                           "selectionModifier": 2.1,
-#                           "selectionModifierType": "ABSOLUTE"
-#                       }
-#                   ],
-#                   "type": "CHOICES"
-#               }
-#           ],
-#           "taxes": [
-#               {
-#                   "name": "Tax",
-#                   "value": 8.75,
-#                   "total": 1.87,
-#                   "taxOnDiscountedSubtotal": 1.87,
-#                   "taxOnShipping": 0,
-#                   "includeInPrice": false
-#               }
-#           ],
-#           "dimensions": {
-#               "length": 0,
-#               "width": 0,
-#               "height": 0
-#           },
-#           "discountsAllowed": true,
-#           "taxable": true,
-#           "isGiftCard": false
-#       }
-#   ],
-#   "refunds": [],
-#   "billingPerson": {
-#       "name": "Marc Sangster",
-#       "firstName": "Marc",
-#       "lastName": "Sangster",
-#       "street": "1",
-#       "city": "Yemen Street",
-#       "countryCode": "GB",
-#       "countryName": "United Kingdom",
-#       "postalCode": "BT1 1AA",
-#       "stateOrProvinceCode": "Yemen",
-#       "stateOrProvinceName": "Yemen"
-#   },
-#   "shippingPerson": {
-#       "name": "Marc Sangster",
-#       "firstName": "Marc",
-#       "lastName": "Sangster"
-#   },
-#   "shippingOption": {
-#       "shippingMethodName": "Self Pickup",
-#       "shippingRate": 0,
-#       "isPickup": true,
-#       "pickupInstruction": "<p><strong>Pickup location</strong></p><p>PlipPlopPlup, 1 Yemen Steet, Yemen</p><p><strong>Business hours</strong></p><p>All Day, Everyday</p>",
-#       "fulfillmentType": "PICKUP"
-#   },
-#   "handlingFee": {
-#       "value": 0
-#   },
-#   "predictedPackage": [],
-#   "shipments": [],
-#   "additionalInfo": {
-#       "google_customer_id": "2026495402.1588169630"
-#   },
-#   "paymentParams": {},
-#   "hidden": false,
-#   "taxesOnShipping": [],
-#   "acceptMarketing": false,
-#   "disableAllCustomerNotifications": false,
-#   "externalFulfillment": false
-# }
-
-  # "billingPerson": {
-  #     "name": "Marc Sangster",
-  #     "firstName": "Marc",
-  #     "lastName": "Sangster",
-  #     "street": "1",
-  #     "city": "Yemen Street",
-  #     "countryCode": "GB",
-  #     "countryName": "United Kingdom",
-  #     "postalCode": "BT1 1AA",
-  #     "stateOrProvinceCode": "Yemen",
-  #     "stateOrProvinceName": "Yemen"
-  # },
-
-  # "shippingPerson": {
-  #     "name": "Marc Sangster",
-  #     "firstName": "Marc",
-  #     "lastName": "Sangster"
-  # },
-
-  # "shippingOption": {
-  #     "shippingMethodName": "Self Pickup",
-  #     "shippingRate": 0,
-  #     "isPickup": true,
-  #     "pickupInstruction": "<p><strong>Pickup location</strong></p><p>PlipPlopPlup, 1 Yemen Steet, Yemen</p><p><strong>Business hours</strong></p><p>All Day, Everyday</p>",
-  #     "fulfillmentType": "PICKUP"
-  # }
-
 module Ecwid
   # Ecwid::Order
   class Order
@@ -211,30 +16,23 @@ module Ecwid
 
     attr_reader :vendor_order_number,
                 :refunded_amount,
-                # :subtotal,
-                # :total,
                 :gift_card_redemption,
                 :total_before_gift_card_redemption,
-                # :email,
                 :payment_method,
-                # :tax,
                 :customer_tax_exempt,
                 :customer_tax_id,
                 :customer_tax_id_valid,
                 :reversed_tax_applied,
                 :ip_address,
                 :coupon,
-                # :coupon_discount,
                 :payment_status,
                 :fulfillment_status,
                 :order_number,
                 :referer_url,
                 :order_comments,
-                # :volume_discount,
                 :customer_id,
                 :membership_based_discount,
                 :total_and_membership_based_discount,
-                # :discount,
                 :usd_total,
                 :global_referer,
                 :create_date,
@@ -248,7 +46,6 @@ module Ecwid
                 :additional_info,
                 :payment_params,
                 :hidden,
-                :taxes_on_shipping,
                 :accept_marketing,
                 :disable_all_customer_notifications,
                 :external_fulfillment
@@ -257,9 +54,11 @@ module Ecwid
       data.each do |var, value|
         instance_variable_set("@#{var}", value)
       end
-      # INFO: Order is important. Coupon should be applied first
+      # NOTE: Order is important. Coupon should be applied first
       apply_coupon if coupon
       apply_volume_discount if automatic_discount
+      distribute_shipping
+      apply_taxes
     end
 
     def update_variables(data = {})
@@ -270,14 +69,19 @@ module Ecwid
       end
     end
 
-    # TODO: Shippig and Discounts
     def subtotal
       items.map(&:subtotal).sum.round(2)
     end
 
-    # TODO: Shippig and Discounts
-    # (line_items.map(&:total).sum + shipping.rate - discount_total).round(2),
     def total
+      item_total + shipping_total
+    end
+
+    def shipping_total
+      shipping_option.rate
+    end
+
+    def item_total
       items.map(&:total).sum.round(2)
     end
 
@@ -289,7 +93,8 @@ module Ecwid
       shipping_person&.email || billing_person&.email
     end
 
-    # NOTE: This may include other types of discounts though I've not seen it yet
+    # NOTE: This may include other types of discounts,
+    #       though I've not seen it yet
     def discount
       volume_discount
     end
@@ -357,18 +162,58 @@ module Ecwid
       end
     end
 
-    # def save!
-    #   make_request
-    # end
+    # TODO: Handle rounding errors
+    def distribute_shipping
+      items.each do |item|
+        shipping_per_item = shipping_option.rate.to_f / quantity
 
-    # def items
-    #   items_params = line_items.map(&:to_h)
+        item.shipping = (shipping_per_item * item.quantity).round(2)
+      end
+    end
 
-    #   items_params = send("apply_#{coupon.type}_coupon", items_params) if coupon
-    #   items_params = send("apply_#{automatic_discount.type}_automatic_discount", items_params) if automatic_discount
+    def apply_taxes
+      items.each(&:calculate_taxes)
+    end
 
-    #   items_params
-    # end
+    def quantity
+      items.map(&:quantity).sum
+    end
+
+    # NOTE: Taxes are merged. Presumably if they match name/value.
+    #       Also this might not be requried to place an order, then
+    #       you just just use the return value after creation
+    # [
+    #   {
+    #     name: "Tax",
+    #     value: 8.75,
+    #     total: 0.88
+    #   },
+    #   {
+    #     name: "Tiny Tax",
+    #     value: 1.5,
+    #     total: 0.08
+    #   }
+    # ]
+    def taxes_on_shipping
+      result = []
+
+      items.each do |item|
+        item.taxes.each do |tax|
+          existing_tax = result.find { |t| t[:name] == tax.name && t[:value] == tax.value }
+
+          if existing_tax
+            existing_tax[:total] += tax.tax_on_shipping
+          else
+            result << {
+              name: tax.name,
+              value: tax.value,
+              total: tax.tax_on_shipping
+            }
+          end
+        end
+      end
+      result
+    end
 
     # def apply_percent_coupon(items_params)
     #   items_params.map do |item|
@@ -424,25 +269,6 @@ module Ecwid
     #   end
     # end
 
-    # def coupon_discount
-    #   items.map { |item| item[:couponAmount] || 0 }.sum
-    # end
-
-    # def automatic_discount_amount
-    #   if automatic_discount&.type == :amount
-    #     automatic_discount.value
-    #   elsif automatic_discount&.type == :percent
-    #     items.map { |i| i[:discounts].map { |d| d[:total] } }.flatten.sum
-    #   else
-    #     0
-    #   end
-    # end
-
-    # def discount_total
-    #   # plus some other things
-    #   coupon_discount + automatic_discount_amount
-    # end
-
     def params
       {
         subtotal: subtotal,
@@ -458,29 +284,6 @@ module Ecwid
         discount: discount
       }
     end
-
-    # def params
-    #   {
-    #     subtotal: subtotal,
-    #     total: (line_items.map(&:total).sum + shipping.rate - discount_total).round(2),
-    #     email: customer.email,
-    #     paymentMethod: payment_method,
-    #     tax: line_items.map(&:tax_total).sum.round(2),
-    #     customerTaxExempt: false,
-    #     customerTaxId: '',
-    #     customerTaxIdValid: false,
-    #     reversedTaxApplied: false,
-    #     volumeDiscount: automatic_discount_amount,
-    #     # discount: automatic_discount_amount,
-    #     predictedPackage: [],
-    #     taxesOnShipping: [],
-    #     items: items,
-    #     # I don't think this matters
-    #     shippingPerson: shipping.pick_up ? customer.partial : customer.full,
-    #     shippingOption: shipping.to_h,
-    #     couponDiscount: coupon_discount
-    #   }
-    # end
 
     # private
 

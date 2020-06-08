@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :ecwid_order, class: Ecwid::Order do
     items              { build_list(:ecwid_line_item, 1) }
-    shipping_option    { build :ecwid_shipping }
+    shipping_option    { build :ecwid_shipping, :pick_up }
     shipping_person    { build :ecwid_customer }
     payment_method     { 'Pay by Cash' }
     store_id           { ENV.fetch('ECWID_STORE_ID') }
